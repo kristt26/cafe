@@ -20,8 +20,8 @@ CI_ENVIRONMENT = development
 # APP
 #--------------------------------------------------------------------
 
-# app.baseURL = 'http://localhost:8080/'
 app.baseURL = 'http://localhost:8080/'
+# app.baseURL = 'http://moora.octagonjayapura.skom.id/'
 # If you have trouble with `.`, you could also use `_`.
 # app_baseURL = ''
 # app.forceGlobalSecureRequests = false
@@ -32,9 +32,9 @@ app.baseURL = 'http://localhost:8080/'
 #--------------------------------------------------------------------
 
 database.default.hostname = localhost
-database.default.database = utvmn4ak_moora
-database.default.username = utvmn4ak_root
-database.default.password = Stimik1011
+database.default.database = pemilihan_cafe
+database.default.username = root
+database.default.password = 
 database.default.DBDriver = MySQLi
 database.default.DBPrefix =
 database.default.port = 3306
