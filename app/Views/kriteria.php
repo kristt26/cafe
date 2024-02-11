@@ -20,7 +20,7 @@
                         </div>
                         <div ng-class="{'form-group pmd-textfield pmd-textfield-floating-label': !model.id, 'form-group pmd-textfield': model.id}">
                             <label class="control-label">Bobot</label>
-                            <input type="number" class="form-control" ng-model="model.bobot" placeholder="Bobot dalam %" required>
+                            <input type="number" class="form-control" ng-model="model.bobot" required>
                         </div>
                         <div ng-class="{'form-group pmd-textfield pmd-textfield-floating-label': !model.id, 'form-group pmd-textfield': model.id}">
                             <label class="control-label">Type</label>
@@ -52,7 +52,7 @@
                                     <th>Kode</th>
                                     <th>Bobot</th>
                                     <th>Type</th>
-                                    <th><i class="fas fa-cogs"></i></th>
+                                    <th width="15%"><i class="fas fa-cogs"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,7 +65,7 @@
                                     <td>
                                         <button type="submit" class="btn btn-warning pmd-ripple-effect btn-sm" ng-click="edit(item)"><i class="fas fa-edit fa-sm fa-fw"></i></button>
                                         <button type="submit" class="btn btn-danger pmd-ripple-effect btn-sm" ng-click="delete(item)"><i class="fas fa-trash-alt fa-sm fa-fw"></i></button>
-                                        <button type="submit" class="btn btn-info pmd-ripple-effect btn-sm" ng-click="showRange(item)"><i class="fas fa-list"></i></button>
+                                        <button ng-if="item.type!='Cost'" type="submit" class="btn btn-info pmd-ripple-effect btn-sm" ng-click="showRange(item)"><i class="fas fa-list"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -90,7 +90,7 @@
                         </div>
                         <div ng-class="{'form-group pmd-textfield pmd-textfield-floating-label': !model.id, 'form-group pmd-textfield': model.id}">
                             <label class="control-label">Bobot</label>
-                            <input type="number" class="form-control" ng-model="model.bobot" placeholder="Bobot dalam %" required>
+                            <input type="number" class="form-control" ng-model="model.bobot" required>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">

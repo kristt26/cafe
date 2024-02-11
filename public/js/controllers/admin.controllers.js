@@ -27,6 +27,7 @@ function cafeController($scope, cafeServices, pesan, helperServices, $http) {
     let marker, geocoder, geolocate, direction;
     var directions = [];
     let map1 = [];
+    $.LoadingOverlay('show');
     mapboxgl.accessToken = 'pk.eyJ1Ijoia3Jpc3R0MjYiLCJhIjoiY2txcWt6dHgyMTcxMzMwc3RydGFzYnM1cyJ9.FJYE8uVi-eVl_mH_DLLEmw';
     const map = new mapboxgl.Map({
         container: 'map', // container id
@@ -136,6 +137,7 @@ function cafeController($scope, cafeServices, pesan, helperServices, $http) {
                 }).then(res => {
                     element.jarak = (res.data.distances[0][0]);
                     console.log(element);
+                    $.LoadingOverlay('hide');
                 }, err => {
 
                 });
@@ -190,17 +192,28 @@ function cafeController($scope, cafeServices, pesan, helperServices, $http) {
     $scope.tampiljarak = (long, lat) => {
 
     }
+
+    $scope.showTambah = ()=>{
+        $scope.tambah = true;
+    }
+    
+    $scope.back= ()=>{
+        $scope.tambah = false;
+        $scope.model = {};
+    }
     $scope.save = () => {
         pesan.dialog('Yakin ingin?', 'Yes', 'Tidak').then(res => {
             if ($scope.model.id) {
                 cafeServices.put($scope.model).then(res => {
                     $scope.model = {};
                     pesan.Success("Berhasil mengubah data");
+                    $scope.tambah = false;
                 })
             } else {
                 cafeServices.post($scope.model).then(res => {
                     $scope.model = {};
                     pesan.Success("Berhasil menambah data");
+                    $scope.tambah = false;
                 })
             }
         })
@@ -208,6 +221,7 @@ function cafeController($scope, cafeServices, pesan, helperServices, $http) {
 
     $scope.edit = (item) => {
         $scope.model = angular.copy(item);
+        $scope.tambah = true;
         document.getElementById("periode").focus();
     }
 

@@ -65,16 +65,16 @@
                     <span>Dashboard</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('cafe') ?>">
-                    <i class="fas fa-coffee"></i>
-                    <span>Cafe</span></a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('kriteria') ?>">
                     <i class="fas fa-list"></i>
                     <span>Kriteria</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('cafe') ?>">
+                    <i class="fas fa-coffee"></i>
+                    <span>Cafe</span></a>
+            </li>
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('client') ?>">
                     <i class="fas fa-users"></i>
                     <span>Client</span></a>
@@ -88,7 +88,7 @@
                 <a class="nav-link" href="<?= base_url('hasil') ?>">
                     <i class="fas fa-file"></i>
                     <span>Hasil</span></a>
-            </li>
+            </li> -->
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

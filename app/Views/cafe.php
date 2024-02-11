@@ -5,7 +5,7 @@
 <div ng-controller="cafeController">
     <h1 class="h3 mb-4 text-gray-800">{{setTitle}}</h1>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-12" ng-if="tambah">
             <div class="card">
                 <div class="card-header">
                     <h3>Input Data Cafe</h3>
@@ -31,16 +31,18 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
+                        <button type="submit" class="btn btn-secondary pmd-ripple-effect btn-sm" ng-click="back()">Batal</button>
                         <button type="submit" class="btn btn-primary pmd-ripple-effect btn-sm">Simpan</button>
                     </div>
                 </form>
 
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-12"  ng-if="!tambah">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between">
                     <h3>Daftar Cafe</h3>
+                    <button class="btn btn-primary btn-sm" ng-click="showTambah()"><i class="fas fa-plus"></i></button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
