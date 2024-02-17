@@ -15,6 +15,11 @@ class Cafe extends BaseController
     {
         return view('cafe');
     }
+
+    public function detail($id=null)
+    {
+        return view('penilaian');
+    }
     public function read()
     {
         try {

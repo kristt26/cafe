@@ -69,6 +69,7 @@
                                     <td>
                                         <button type="submit" class="btn btn-warning pmd-ripple-effect btn-sm" ng-click="edit(item)"><i class="fas fa-edit fa-sm fa-fw"></i></button>
                                         <button type="submit" class="btn btn-danger pmd-ripple-effect btn-sm"><i class="fas fa-trash-alt fa-sm fa-fw"></i></button>
+                                        <a href="cafe/{{item.id}}" type="submit" class="btn btn-info pmd-ripple-effect btn-sm" ng-click="edit(item)"><i class="fas fa-list fa-sm fa-fw"></i></a>
                                     </td>
                                 </tr>
                             </tbody>

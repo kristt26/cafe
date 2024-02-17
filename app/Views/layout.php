@@ -74,6 +74,11 @@
                     <i class="fas fa-coffee"></i>
                     <span>Cafe</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('penilaian') ?>">
+                    <i class="fas fa-list"></i>
+                    <span>Penilaian</span></a>
+            </li>
             <!-- <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('client') ?>">
                     <i class="fas fa-users"></i>

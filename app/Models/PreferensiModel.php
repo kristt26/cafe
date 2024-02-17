@@ -14,5 +14,5 @@ class PreferensiModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kriteria_id', 'alternatif_id', 'value', 'bobot'];
+    protected $allowedFields    = ['kriteria_id', 'cafe_id', 'value', 'bobot'];
 }

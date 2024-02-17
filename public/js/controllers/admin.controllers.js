@@ -2,9 +2,7 @@ angular.module('adminctrl', [])
     // Admin
     .controller('dashboardController', dashboardController)
     .controller('cafeController', cafeController)
-    .controller('periodeController', periodeController)
     .controller('kriteriaController', kriteriaController)
-    .controller('clientController', clientController)
     .controller('penilaianController', penilaianController)
     .controller('hasilController', hasilController)
     ;
@@ -28,7 +26,7 @@ function cafeController($scope, cafeServices, pesan, helperServices, $http) {
     var directions = [];
     let map1 = [];
     $.LoadingOverlay('show');
-    mapboxgl.accessToken = 'pk.eyJ1Ijoia3Jpc3R0MjYiLCJhIjoiY2txcWt6dHgyMTcxMzMwc3RydGFzYnM1cyJ9.FJYE8uVi-eVl_mH_DLLEmw';
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia3Jpc3R0MjYiLCJhIjoiY2xyYnU5bDZjMG9uMjJtcDF0aTlhdjJwYSJ9.XQTFFfF91zWgPM02hDMHGQ';
     const map = new mapboxgl.Map({
         container: 'map', // container id
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
@@ -238,48 +236,6 @@ function cafeController($scope, cafeServices, pesan, helperServices, $http) {
     }
 }
 
-function periodeController($scope, periodeServices, pesan, helperServices) {
-    $scope.setTitle = "Periode";
-    $scope.$emit("SendUp", $scope.setTitle);
-    $scope.datas = {};
-    $scope.model = {};
-    periodeServices.get().then((res) => {
-        $scope.datas = res;
-    })
-    $scope.save = () => {
-        pesan.dialog('Yakin ingin?', 'Yes', 'Tidak').then(res => {
-            if ($scope.model.id) {
-                periodeServices.put($scope.model).then(res => {
-                    $scope.model = {};
-                    pesan.Success("Berhasil mengubah data");
-                })
-            } else {
-                periodeServices.post($scope.model).then(res => {
-                    $scope.model = {};
-                    pesan.Success("Berhasil menambah data");
-                })
-            }
-        })
-    }
-
-    $scope.edit = (item) => {
-        $scope.model = angular.copy(item);
-        document.getElementById("periode").focus();
-    }
-
-    $scope.delete = (param) => {
-        pesan.dialog('Yakin ingin?', 'Ya', 'Tidak').then(res => {
-            klasifikasiServices.deleted(param).then(res => {
-                pesan.Success("Berhasil menghapus data");
-            })
-        });
-    }
-
-    $scope.subKlasifikasi = (param) => {
-        document.location.href = helperServices.url + "admin/sub_klasifikasi/data/" + param.id;
-    }
-}
-
 function kriteriaController($scope, kriteriaServices, pesan, helperServices, RangeServices) {
     $scope.setTitle = "Kriteria";
     $scope.$emit("SendUp", $scope.setTitle);
@@ -374,45 +330,8 @@ function kriteriaController($scope, kriteriaServices, pesan, helperServices, Ran
     }
 }
 
-function clientController($scope, clientServices, pesan, helperServices) {
-    $scope.setTitle = "Client";
-    $scope.$emit("SendUp", $scope.setTitle);
-    $scope.datas = {};
-    $scope.model = {};
-    clientServices.get().then((res) => {
-        $scope.datas = res;
-    })
-    $scope.save = () => {
-        pesan.dialog('Yakin ingin?', 'Yes', 'Tidak').then(res => {
-            if ($scope.model.id) {
-                clientServices.put($scope.model).then(res => {
-                    $scope.model = {};
-                    pesan.Success("Berhasil mengubah data");
-                })
-            } else {
-                clientServices.post($scope.model).then(res => {
-                    $scope.model = {};
-                    pesan.Success("Berhasil menambah data");
-                })
-            }
-        })
-    }
 
-    $scope.edit = (item) => {
-        $scope.model = angular.copy(item);
-        document.getElementById("periode").focus();
-    }
-
-    $scope.delete = (param) => {
-        pesan.dialog('Yakin ingin?', 'Ya', 'Tidak').then(res => {
-            clientServices.deleted(param).then(res => {
-                pesan.Success("Berhasil menghapus data");
-            })
-        });
-    }
-}
-
-function penilaianController($scope, penilaianServices, pesan, helperServices) {
+function penilaianController($scope, penilaianServices, cafeServices, pesan, helperServices) {
     $scope.setTitle = "Penilaian";
     $scope.$emit("SendUp", $scope.setTitle);
     $scope.datas = {};

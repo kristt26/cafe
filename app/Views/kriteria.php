@@ -65,7 +65,7 @@
                                     <td>
                                         <button type="submit" class="btn btn-warning pmd-ripple-effect btn-sm" ng-click="edit(item)"><i class="fas fa-edit fa-sm fa-fw"></i></button>
                                         <button type="submit" class="btn btn-danger pmd-ripple-effect btn-sm" ng-click="delete(item)"><i class="fas fa-trash-alt fa-sm fa-fw"></i></button>
-                                        <button ng-if="item.type!='Cost'" type="submit" class="btn btn-info pmd-ripple-effect btn-sm" ng-click="showRange(item)"><i class="fas fa-list"></i></button>
+                                        <button type="submit" class="btn btn-info pmd-ripple-effect btn-sm" ng-click="showRange(item)"><i class="fas fa-list"></i></button>
                                     </td>
                                 </tr>
                             </tbody>

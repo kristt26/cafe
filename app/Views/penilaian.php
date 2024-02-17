@@ -14,10 +14,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Clien</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>No. Telepon/HP</th>
-                                    <th>Alamat</th>
+                                    <th>Nama Cafe</th>
                                     <th><i class="fas fa-cogs"></i></th>
                                 </tr>
                             </thead>
@@ -25,9 +22,6 @@
                                 <tr ng-repeat="item in datas" ng-class="{'bg-primary text-white': item.statusNilai}">
                                     <td>{{$index+1}}</td>
                                     <td>{{item.nama}}</td>
-                                    <td>{{item.jk}}</td>
-                                    <td>{{item.telp}}</td>
-                                    <td>{{item.alamat}}</td>
                                     <td>
                                         <button type="button" class="btn btn-info pmd-ripple-effect btn-sm" ng-click="nilai(item)"><i class="fas fa-file fa-sm fa-fw"></i></button>
                                     </td>
@@ -42,7 +36,7 @@
         <div class="col-md-12" ng-show="setShow =='penilaian'">
             <div class="card">
                 <div class="card-header d-flex justify-content-lg-between">
-                    <h3>Penilaian Client: {{peserta.nama}}</h3>
+                    <h3>Penilaian Cafe: {{peserta.nama}}</h3>
                     <button class="btn btn-secondary btn-sm" ng-click="back()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</button>
                 </div>
                 <form ng-submit="save()">

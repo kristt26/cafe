@@ -32,6 +32,7 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->group('cafe', function ($routes) {
     $routes->get('/', 'Cafe::index');
+    $routes->get('(:num)', 'Cafe::detail/$1');
     $routes->get('read', 'Cafe::read');
     $routes->post('post', 'Cafe::post');
     $routes->put('put', 'Cafe::put');
@@ -81,6 +82,8 @@ $routes->group('penilaian', function ($routes) {
 
 $routes->group('hasil', function ($routes) {
     $routes->get('/', 'Hasil::index');
+    $routes->get('read', 'Hasil::read');
+    $routes->post('ambil', 'Hasil::ambil');
     $routes->get('hitung', 'Hasil::hitung');
 });
 
