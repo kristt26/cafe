@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="home/css/animate.min.css">
     <link rel="stylesheet" href="home/css/owl.carousel.css">
     <link rel="stylesheet" href="home/css/main.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
 </head>
 
 <body>
@@ -79,7 +81,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="single-menu">
-                        <form ng-submit="hitung()">
+                        <form ng-submit="hitung()" ng-show="!hasil">
                             <div class="form-group" ng-repeat="item in datas">
                                 <label style="color: #222222;font-weight: 600;">{{item.nama}}</label>
                                 <select class="form-control" ng-model="item.value">
@@ -87,9 +89,30 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-sm">Hitung</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Cari</button>
                             </div>
                         </form>
+                        <div ng-show="hasil">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Urutan</th>
+                                        <th>Cafe</th>
+                                        <th>Nilai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in hasil.alternatif">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{item.nama}}</td>
+                                        <td>{{item.preferensi.toFixed(2)}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="form-group">
+                                <button type="button" ng-click="ulang()" class="btn btn-secondary btn-sm">Ulangi</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -98,97 +121,27 @@
     <!-- End menu Area -->
 
     <!-- Start gallery Area -->
-    <section class="gallery-area section-gap" id="gallery">
+    <!-- <section class="gallery-area section-gap" id="gallery">
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="menu-content pb-60 col-lg-10">
                     <div class="title text-center">
-                        <h1 class="mb-10">What kind of Coffee we serve for you</h1>
-                        <p>Who are in extremely love with eco friendly system.</p>
+                        <h1 class="mb-10">Persebaran lokasi cafe</h1>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <a href="img/g1.jpg" class="img-pop-home">
-                        <img class="img-fluid" src="home/img/g1.jpg" alt="">
-                    </a>
-                    <a href="img/g2.jpg" class="img-pop-home">
-                        <img class="img-fluid" src="home/img/g2.jpg" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-8">
-                    <a href="img/g3.jpg" class="img-pop-home">
-                        <img class="img-fluid" src="home/img/g3.jpg" alt="">
-                    </a>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <a href="img/g4.jpg" class="img-pop-home">
-                                <img class="img-fluid" src="home/img/g4.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-lg-6">
-                            <a href="img/g5.jpg" class="img-pop-home">
-                                <img class="img-fluid" src="home/img/g5.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div>
             </div>
         </div>
-    </section>
+    </section> -->
+    <div id="map"></div>
+    <pre id="info"></pre>
     <!-- End gallery Area -->
 
 
     <!-- start footer Area -->
     <footer class="footer-area section-gap">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-md-6 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h6>About Us</h6>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.
-                        </p>
-                        <p class="footer-text">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>
-                                document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-5  col-md-6 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h6>Newsletter</h6>
-                        <p>Stay update with our latest</p>
-                        <div class="" id="mc_embed_signup">
-                            <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-                                <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-                                <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-                                <div style="position: absolute; left: -5000px;">
-                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                                </div>
-
-                                <div class="info pt-20"></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
-                    <div class="single-footer-widget">
-                        <h6>Follow Us</h6>
-                        <p>Let us be social</p>
-                        <div class="footer-social d-flex align-items-center">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-behance"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </footer>
     <!-- End footer Area -->
@@ -217,6 +170,10 @@
             .controller('homeController', homeController);
 
         function homeController($scope, $http, helperServices) {
+            $scope.map = false;
+            let marker, geocoder, geolocate, direction;
+            var directions = [];
+            let map1 = [];
             $scope.init = () => {
                 $http({
                     method: 'get',
@@ -226,20 +183,182 @@
                     console.log($scope.datas);
                 })
             }
+            mapboxgl.accessToken = 'pk.eyJ1Ijoia3Jpc3R0MjYiLCJhIjoiY2xyYnU5bDZjMG9uMjJtcDF0aTlhdjJwYSJ9.XQTFFfF91zWgPM02hDMHGQ';
+            const map = new mapboxgl.Map({
+                container: 'map', // container id
+                // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+                style: 'mapbox://styles/mapbox/streets-v12',
+                center: [140.7051989, -2.5570135], // starting position
+                zoom: 12 // starting zoom
+            });
+            marker = new mapboxgl.Marker().setLngLat([140.703739, -2.538754]).addTo(map);
 
-            $scope.hitung = ()=>{
+            geocoder = new MapboxGeocoder({
+                // Initialize the geocoder
+                accessToken: mapboxgl.accessToken, // Set the access token
+                mapboxgl: mapboxgl, // Set the mapbox-gl instance
+                marker: false, // Do not use the default marker style
+                placeholder: 'Search for places in Jayapura',
+                bbox: [139.422743, -3.753267, 141.0163745, -2.2925515],
+                proximity: {
+                    longitude: 140.704829,
+                    latitude: -2.540538
+                }
+            });
+            map.addControl(geocoder);
+            map.on('load', () => {
+                map.addSource('single-point', {
+                    type: 'geojson',
+                    data: {
+                        type: 'FeatureCollection',
+                        features: []
+                    }
+                });
+
+                map.addLayer({
+                    id: 'point',
+                    source: 'single-point',
+                    type: 'circle',
+                    paint: {
+                        'circle-radius': 10,
+                        'circle-color': '#448ee4'
+                    }
+                });
+
+                // Listen for the `result` event from the Geocoder
+                // `result` event is triggered when a user makes a selection
+                //  Add a marker at the result's coordinates
+                geocoder.on('result', (event) => {
+                    map.getSource('single-point').setData(event.result.geometry);
+                });
+            });
+            geolocate = new mapboxgl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true,
+                showUserHeading: true
+            })
+            map.addControl(geolocate);
+            map.on("load", function() {
+                geolocate.trigger();
+            });
+
+            geolocate.on("geolocate", locateUser);
+
+            function locateUser(e) {
+                $scope.long = e.coords.longitude;
+                $scope.lat = e.coords.latitude;
+            }
+
+            map.on('click', (e) => {
+                document.getElementById('info').innerHTML =
+                    // `e.point` is the x, y coordinates of the `mousemove` event
+                    // relative to the top-left corner of the map.
+                    JSON.stringify(e.point) +
+                    '<br />' +
+                    // `e.lngLat` is the longitude, latitude geographical position of the event.
+                    JSON.stringify(e.lngLat.wrap());
+                $scope.$applyAsync(x => {
+                    $scope.map = false;
+                    $scope.model.lat = e.lngLat.lat;
+                    $scope.model.long = e.lngLat.lng;
+                    var setUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + $scope.model.long + ',' + $scope.model.lat + '.json?access_token=' + mapboxgl.accessToken;
+                    console.log(setUrl);
+                    $http({
+                        method: 'get',
+                        url: setUrl,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(res => {
+                        $scope.model.alamat = res.data.features[0].place_name;
+                    }, err => {
+
+                    });
+                })
+            });
+            $scope.tampilMap = () => {
+                $scope.map = true;
+            };
+            var url = "https://api.mapbox.com/directions-matrix/v1/mapbox/walking/140.7052584,-2.5565861;140.70497828984,-2.5369845726705?sources=1&annotations=distance,duration&access_token=pk.eyJ1Ijoia3Jpc3R0MjYiLCJhIjoiY2txcWt6dHgyMTcxMzMwc3RydGFzYnM1cyJ9.FJYE8uVi-eVl_mH_DLLEmw"
+            // setTimeout(() => {
+            //     cafeServices.get().then((res) => {
+            //         $scope.datas = res;
+            //         $scope.datas.forEach(element => {
+            //             var Url = "https://api.mapbox.com/directions-matrix/v1/mapbox/walking/" + $scope.long + "," + $scope.lat + ";" + element.long + "," + element.lat + "?sources=1&annotations=distance,duration&access_token=pk.eyJ1Ijoia3Jpc3R0MjYiLCJhIjoiY2txcWt6dHgyMTcxMzMwc3RydGFzYnM1cyJ9.FJYE8uVi-eVl_mH_DLLEmw";
+            //             $http({
+            //                 method: 'get',
+            //                 url: Url
+            //             }).then(res => {
+            //                 element.jarak = (res.data.distances[0][0]);
+            //                 console.log(element);
+            //             }, err => {
+
+            //             });
+            //         });
+            //     })
+            // }, 1500);
+
+            $scope.hitung = () => {
                 $http({
                     method: 'post',
                     url: helperServices.url + 'hasil/ambil',
                     data: $scope.datas
                 }).then(res => {
-                    $scope.datas = res.data;
-                    console.log($scope.datas);
+                    $scope.cafe = res.data;
+                    $scope.itemJarak = $scope.datas.find(x => x.nama == 'Jarak');
+                    console.log(res.data);
+                    $scope.cafe.forEach((element, ind) => {
+                        var Url = "https://api.mapbox.com/directions-matrix/v1/mapbox/walking/" + $scope.long + "," + $scope.lat + ";" + element.long + "," + element.lat + "?sources=1&annotations=distance,duration&access_token=pk.eyJ1Ijoia3Jpc3R0MjYiLCJhIjoiY2txcWt6dHgyMTcxMzMwc3RydGFzYnM1cyJ9.FJYE8uVi-eVl_mH_DLLEmw";
+                        $http({
+                            method: 'get',
+                            url: Url
+                        }).then(res => {
+                            element.jarak = (res.data.distances[0][0]);
+                            console.log(element);
+                            element.in = true;
+                            var setJarak = $scope.itemJarak.range.find(x => x.bobot == $scope.itemJarak.value);
+                            if (setJarak.bobot == "1") {
+                                if ((element.jarak / 1000) >= 10) {
+                                    $scope.itemJarak.value = setJarak.bobot;
+                                    element.kriteria.push($scope.itemJarak);
+                                }
+                            } else {
+                                $scope.itemJarak.range.forEach(jarak => {
+                                    var item = setJarak.range.split("-")
+                                    if ((element.jarak / 1000) >= parseFloat(item[0]) && (element.jarak / 1000) <= parseFloat(item[1])) {
+                                        $scope.itemJarak.value = jarak.bobot;
+                                        element.kriteria.push($scope.itemJarak);
+                                    }
+                                });
+                            }
+                            if (ind === ($scope.cafe.length - 1)) {
+                                $http({
+                                    method: "post",
+                                    url: helperServices.url + 'hasil/hitung',
+                                    data: $scope.cafe
+                                }).then(res => {
+                                    $scope.hasil = res.data
+                                    console.log(res.data);
+                                })
+                            }
+
+                        }, err => {});
+                    });
                 })
+            }
+
+            $scope.ulang = () => {
+                $scope.hasil = null;
             }
         }
     </script>
     <script src="home/js/main.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css" type="text/css">
 </body>
 
 </html>

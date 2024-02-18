@@ -49,11 +49,15 @@ class Hasil extends BaseController
             foreach ($data as $key1 => $value1) {
                 if($value['id']==$value1['cafe_id']){
                     foreach ($param as $key2 => $value2) {
-                        if($value1['id']==$value2->id && $value1['value']<=$value2->value){
-                            $cafe[$key]['kriteria'][]=$value1;
-                            
-                        }else{
-                            $check = false;
+                        if($value1['id']==$value2->id){
+                            if($value1['value'] >= $value2->value){
+                                $cafe[$key]['kriteria'][]=$value1;
+                            }
+                            else{
+                                $check = false;
+                            }
+                            // if($value1['type']=="Cost"){
+                            // }
                         }
                     }
                 }
@@ -69,25 +73,22 @@ class Hasil extends BaseController
     {
         try {
             $data = $this->request->getJSON();
-            foreach ($data as $key => $value) {
-                # code...
+            $kriterias = $this->kriteria->findAll();
+            $result = array();
+            foreach ($data as $key => $alternatif) {
+                // $alternatif['nilai'] = array();
+                $cafe = (array)$alternatif;
+                $cafe['nilai'] = [];
+                foreach ($alternatif->kriteria as $key => $kriteria) {
+                    $item = [];
+                    $item['kode']=$kriteria->kode;
+                    $item['bobot'] = (int) $kriteria->value;
+                    $cafe['nilai'][] = $item;
+                }
+                $result[]=$cafe;
             }
-            // $kriterias = $this->kriteria->findAll();
-            // $alternatifs = $this->client->select("alternatif.*")->join("periode", "periode.id=alternatif.periode_id")->where("periode.status", "1")->findAll();
-            // $result = array();
-            // foreach ($alternatifs as $key => $alternatif) {
-            //     $alternatif['nilai'] = array();
-            //     foreach ($kriterias as $key => $kriteria) {
-            //         $kriterias[$key]['bobot'] = (int) $kriterias[$key]['bobot'];
-            //         $item = $this->preferensi->where('alternatif_id', $alternatif['id'])->where('kriteria_id', $kriteria['id'])->first();
-            //         $item['kode']=$kriteria['kode'];
-            //         $item['bobot'] = (int) $item['value'];
-            //         $alternatif['nilai'][] = $item;
-            //     }
-            //     $result[]=$alternatif;
-            // }
-            // $htg = new moora($kriterias,$result,7);
-            // return $this->respond($htg);
+            $htg = new moora($kriterias,$result,7);
+            return $this->respond($htg);
         } catch (\Throwable $th) {
             return $this->fail($th->getMessage());
         }

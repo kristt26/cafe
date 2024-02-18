@@ -84,7 +84,7 @@ $routes->group('hasil', function ($routes) {
     $routes->get('/', 'Hasil::index');
     $routes->get('read', 'Hasil::read');
     $routes->post('ambil', 'Hasil::ambil');
-    $routes->get('hitung', 'Hasil::hitung');
+    $routes->post('hitung', 'Hasil::hitung');
 });
 
 
